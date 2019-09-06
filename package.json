@@ -4,8 +4,10 @@
   "main": "todo-polymer.js",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
+    "@types/uuid": "^3.4.5",
     "browser-sync": "^2.26.7",
-    "lit-element": "^2.2.1"
+    "lit-element": "^2.2.1",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
