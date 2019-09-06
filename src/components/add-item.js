@@ -9,7 +9,7 @@ export class AddItem extends LitElement {
   }
   constructor() {
     super();
-    this.todoItems = '';
+    this.todoItem = '';
   }
 
   inputKeypress(e) {
