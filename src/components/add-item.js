@@ -27,18 +27,20 @@ export class AddItem extends LitElement {
   }
 
   AddItem() {
-    let storedLocalList = JSON.parse(localStorage.getItem('todo-list'));
-    storedLocalList = storedLocalList === null ? [] : storedLocalList;
-    const todoList = [
-      ...storedLocalList,
-      {
-        id: this.uuidGenerator(),
-        item: this.todoItem,
-        done: false
-      }
-    ];
-    this.todoItem = '';
-    localStorage.setItem('todo-list', JSON.stringify(todoList));
+    if (this.todoItem.length > 0) {
+      let storedLocalList = JSON.parse(localStorage.getItem('todo-list'));
+      storedLocalList = storedLocalList === null ? [] : storedLocalList;
+      const todoList = [
+        ...storedLocalList,
+        {
+          id: this.uuidGenerator(),
+          item: this.todoItem,
+          done: false
+        }
+      ];
+      this.todoItem = '';
+      localStorage.setItem('todo-list', JSON.stringify(todoList));
+    }
   }
 
   render() {
