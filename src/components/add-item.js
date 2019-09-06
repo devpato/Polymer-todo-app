@@ -23,7 +23,7 @@ export class AddItem extends LitElement {
   uuidGenerator() {
     const array = new Uint32Array(1);
     window.crypto.getRandomValues(array);
-    return array;
+    return array[0];
   }
 
   AddItem() {
@@ -38,8 +38,15 @@ export class AddItem extends LitElement {
           done: false
         }
       ];
-      this.todoItem = '';
+      this.dispatchEvent(
+        new CustomEvent('add-item', {
+          bubbles: true,
+          composed: true,
+          detail: { todoList: storedLocalList }
+        })
+      );
       localStorage.setItem('todo-list', JSON.stringify(todoList));
+      this.todoItem = '';
     }
   }
 
