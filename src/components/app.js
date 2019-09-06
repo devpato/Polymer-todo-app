@@ -6,20 +6,32 @@ import './list-items';
 class TodoApp extends LitElement {
   static get properties() {
     return {
-      todolist: Array
+      todoList: [],
+      test1: String
     };
   }
 
   constructor() {
     super();
-    this.todolist = [];
+    let list = JSON.parse(localStorage.getItem('todo-list'));
+    this.todoList = list === null ? [] : list;
+    this.test1 = 'zzzzz';
+  }
+
+  firstUpdated() {
+    console.log('yay');
+    this.addEventListener('add-item', e => {
+      this.todoList = e.detail.todoList;
+    });
   }
   render() {
+    // console.log(JSON.stringify(this.todoList));
+    // this.todoList.map(e => console.log(e));
     return html`
       <!-- template content -->
-      <p>A paragraph</p>
+      <p>Todo App</p>
       <add-item></add-item>
-      <list-items></list-items>
+      <list-items todoList=${JSON.stringify(this.todoList)}></list-items>
     `;
   }
 }
