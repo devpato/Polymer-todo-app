@@ -27,21 +27,24 @@ export class AddItem extends LitElement {
   }
 
   AddItem() {
+    let storedLocalList = JSON.parse(localStorage.getItem('todo-list'));
+    storedLocalList = storedLocalList === null ? [] : storedLocalList;
     const todoList = [
+      ...storedLocalList,
       {
         id: this.uuidGenerator(),
         item: this.todoItem,
         done: false
       }
     ];
-    localStorage.setItem('todo-list', JSON.stringify(todoList));
     this.todoItem = '';
+    localStorage.setItem('todo-list', JSON.stringify(todoList));
   }
 
   render() {
     return html`
       <div>
-        <input value=${this.todoItem} @keyup=${this.inputKeyup} />
+        <input .value=${this.todoItem} @keyup=${this.inputKeyup} />
         <button @click="${this.AddItem}">Add Item</button>
       </div>
     `;
