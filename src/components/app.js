@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import './add-item';
+import './list-items';
 
 // Extend the LitElement base class
 class TodoApp extends LitElement {
@@ -17,6 +18,8 @@ class TodoApp extends LitElement {
     return html`
       <!-- template content -->
       <p>A paragraph</p>
+      <add-item></add-item>
+      <list-items></list-items>
     `;
   }
 }
