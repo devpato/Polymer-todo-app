@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element';
+import './add-item';
 
 // Extend the LitElement base class
 class TodoApp extends LitElement {
