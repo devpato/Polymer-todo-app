@@ -3,18 +3,22 @@ import { LitElement, html } from 'lit-element';
 export class TodoItem extends LitElement {
   static get properties() {
     return {
-      todoItem: { type: Object }
+      todoItem: {
+        id: Number,
+        item: String,
+        done: Boolean
+      }
     };
   }
 
   constructor() {
     super();
-    this.todoItem = {};
   }
 
   render() {
+    this.todoItem = JSON.parse(this.todoItem);
     return html`
-      <li>asdfa</li>
+      <li>${this.todoItem.item}</li>
     `;
   }
 }
