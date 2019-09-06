@@ -13,18 +13,36 @@ export class AddItem extends LitElement {
   }
 
   inputKeyup(e) {
-    console.log(e);
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
+      this.AddItem();
     } else {
       this.todoItem = e.target.value;
     }
-    console.log(this.todoItem);
+  }
+
+  uuidGenerator() {
+    const array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    return array;
+  }
+
+  AddItem() {
+    const todoList = [
+      {
+        id: this.uuidGenerator(),
+        item: this.todoItem,
+        done: false
+      }
+    ];
+    localStorage.setItem('todo-list', JSON.stringify(todoList));
+    this.todoItem = '';
   }
 
   render() {
     return html`
       <div>
         <input value=${this.todoItem} @keyup=${this.inputKeyup} />
+        <button @click="${this.AddItem}">Add Item</button>
       </div>
     `;
   }
