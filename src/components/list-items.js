@@ -4,27 +4,29 @@ import './todo-item';
 export class ListItems extends LitElement {
   static get properties() {
     return {
-      todoList: Array
+      todoList: [],
+      test: String
     };
   }
 
   constructor() {
     super();
-    let storedLocalList = JSON.parse(localStorage.getItem('todo-list'));
-    storedLocalList = storedLocalList === null ? [] : storedLocalList;
-    this.todoList = storedLocalList;
+    // let storedLocalList = JSON.parse(localStorage.getItem('todo-list'));
+    // storedLocalList = storedLocalList === null ? [] : storedLocalList;
+    this.todoList = [];
   }
 
   // <ul>${this.todoList.map(element=>html`<li>${element.item}</li>`)}</ul>`
   // <todo-item todoItem=${todo.item}></todo-item>
   //<li>${todo.item}</li>
   render() {
+    this.todoList = JSON.parse(this.todoList);
     return html`
       <ul>
         ${this.todoList.map(
-          element =>
+          todo =>
             html`
-              <li>${element.item}</li>
+              <todo-item todoItem=${JSON.stringify(todo)}></todo-item>
             `
         )}
       </ul>
@@ -32,3 +34,6 @@ export class ListItems extends LitElement {
   }
 }
 customElements.define('list-items', ListItems);
+
+{
+}
