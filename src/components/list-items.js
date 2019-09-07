@@ -58,18 +58,19 @@ export class ListItems extends LitElement {
         }
       </style>
       <div class="lists">
-        <div class="list>
-        <h2 class="title">Today's To Do List</h2>
-        <div class="list-wrapper">
-          ${this.todoList.map(
-            todo =>
-              html`
-                <todo-item todoItem=${JSON.stringify(todo)}></todo-item>
-              `
-          )}
+        <div class="list">
+          <h2 class="title">Today's To Do List</h2>
+          <div class="list-wrapper">
+            ${this.todoList.map(
+              todo =>
+                html`
+                  <todo-item todoItem=${JSON.stringify(todo)}></todo-item>
+                `
+            )}
+          </div>
         </div>
+        <div></div>
       </div>
-      <div></div>
     `;
   }
 }
