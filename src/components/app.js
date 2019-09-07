@@ -16,11 +16,19 @@ class TodoApp extends LitElement {
     this.todoList = list === null ? [] : list;
   }
 
-  //   firstUpdated() {
-  //     this.addEventListener('addItem', e => {
-  //       this.todoList = e.detail.todoList;
-  //     });
-  //   }
+  firstUpdated() {
+    this.addEventListener('removeItem', e => {
+      console.log('remove item');
+      let index = this.todoList
+        .map(item => {
+          return item.id;
+        })
+        .indexOf(e.detail.itemId);
+      this.todoList.splice(index, 1);
+      localStorage.setItem('todo-list', JSON.stringify(this.todoList));
+      console.log(e.detail.itemId);
+    });
+  }
 
   handleAddItem() {
     this.addEventListener('addItem', e => {
