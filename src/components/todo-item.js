@@ -25,11 +25,29 @@ export class TodoItem extends LitElement {
     );
   }
 
+  changeStatus() {
+    this.dispatchEvent(
+      new CustomEvent('updateStatus', {
+        bubbles: true,
+        composed: true,
+        detail: { itemId: this.todoItem.id }
+      })
+    );
+  }
+
   render() {
     this.todoItem = JSON.parse(this.todoItem);
     return html`
-      <li>${this.todoItem.item}</li>
-      <button @click="${this.onRemove}">Remove</button>
+      <li>
+        ${this.todoItem.item} <button @click="${this.onRemove}">Remove</button>
+        ${this.todoItem.done
+          ? html`
+              <input type="checkbox" checked @click="${this.changeStatus}" />
+            `
+          : html`
+              <input type="checkbox" @click="${this.changeStatus}" />
+            `}
+      </li>
     `;
   }
 }
