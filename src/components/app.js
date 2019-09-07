@@ -7,8 +7,7 @@ class TodoApp extends LitElement {
   static get properties() {
     return {
       todoList: {
-        type: Array,
-        Observer: 'handleAddItem'
+        type: Array
       }
     };
   }
@@ -21,6 +20,7 @@ class TodoApp extends LitElement {
 
   firstUpdated() {
     this.handleRemoveItem();
+    this.handleItemUpdate();
   }
 
   handleAddItem() {
@@ -37,6 +37,17 @@ class TodoApp extends LitElement {
       this.todoList = _.clone(this.todoList);
       localStorage.setItem('todo-list', JSON.stringify(this.todoList));
     });
+  }
+
+  handleItemUpdate() {
+    this.addEventListener('updateStatus', e => {
+      const index = this.todoList.findIndex(item => {
+        return item.id === e.detail.itemId;
+      });
+      this.todoList[index].done = !this.todoList[index].done;
+      localStorage.setItem('todo-list', JSON.stringify(this.todoList));
+    });
+    this.requestUpdate();
   }
 
   render() {
