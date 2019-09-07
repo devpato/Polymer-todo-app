@@ -25,7 +25,6 @@ class TodoApp extends LitElement {
 
   handleAddItem() {
     this.addEventListener('addItem', e => {
-      this.todoList = _.clone(this.todoList);
       this.todoList = e.detail.todoList;
     });
   }
