@@ -44,7 +44,7 @@ export class AddItem extends LitElement {
         new CustomEvent('addItem', {
           bubbles: true,
           composed: true,
-          detail: { todoList: storedLocalList }
+          detail: { todoList: todoList }
         })
       );
       this.todoItem = '';
