@@ -31,12 +31,9 @@ class TodoApp extends LitElement {
 
   handleRemoveItem() {
     this.addEventListener('removeItem', e => {
-      let index = this.todoList
-        .map(item => {
-          return item.id;
-        })
-        .indexOf(e.detail.itemId);
-      this.todoList.splice(index, 1);
+      this.todoList = this.todoList.filter(item => {
+        return item.id !== e.detail.itemId;
+      });
       this.todoList = _.clone(this.todoList);
       localStorage.setItem('todo-list', JSON.stringify(this.todoList));
     });
