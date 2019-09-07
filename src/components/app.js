@@ -17,10 +17,11 @@ class TodoApp extends LitElement {
   }
 
   firstUpdated() {
-    this.addEventListener('add-item', e => {
+    this.addEventListener('addItem', e => {
       this.todoList = e.detail.todoList;
     });
   }
+
   render() {
     return html`
       <p>Todo App</p>

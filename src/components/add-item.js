@@ -38,14 +38,15 @@ export class AddItem extends LitElement {
           done: false
         }
       ];
+
+      localStorage.setItem('todo-list', JSON.stringify(todoList));
       this.dispatchEvent(
-        new CustomEvent('add-item', {
+        new CustomEvent('addItem', {
           bubbles: true,
           composed: true,
           detail: { todoList: storedLocalList }
         })
       );
-      localStorage.setItem('todo-list', JSON.stringify(todoList));
       this.todoItem = '';
     }
   }
