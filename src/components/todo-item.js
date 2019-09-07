@@ -40,13 +40,7 @@ export class TodoItem extends LitElement {
     return html`
       <li>
         ${this.todoItem.item} <button @click="${this.onRemove}">Remove</button>
-        ${this.todoItem.done
-          ? html`
-              <input type="checkbox" checked @click="${this.changeStatus}" />
-            `
-          : html`
-              <input type="checkbox" @click="${this.changeStatus}" />
-            `}
+        <input type="checkbox" ?checked="${this.todoItem.done}" @click="${this.changeStatus}" />
       </li>
     `;
   }
