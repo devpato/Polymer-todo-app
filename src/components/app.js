@@ -52,7 +52,6 @@ class TodoApp extends LitElement {
 
   render() {
     return html`
-      <p>Todo App</p>
       <add-item @addItem=${this.handleAddItem}></add-item>
       <list-items todoList=${JSON.stringify(this.todoList)}></list-items>
     `;
