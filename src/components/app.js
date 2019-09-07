@@ -6,7 +6,10 @@ import './list-items';
 class TodoApp extends LitElement {
   static get properties() {
     return {
-      todoList: []
+      todoList: {
+        type: Array,
+        Observer: 'handleAddItem'
+      }
     };
   }
 
@@ -17,6 +20,17 @@ class TodoApp extends LitElement {
   }
 
   firstUpdated() {
+    this.handleRemoveItem();
+  }
+
+  handleAddItem() {
+    this.addEventListener('addItem', e => {
+      this.todoList = _.clone(this.todoList);
+      this.todoList = e.detail.todoList;
+    });
+  }
+
+  handleRemoveItem() {
     this.addEventListener('removeItem', e => {
       let index = this.todoList
         .map(item => {
@@ -26,13 +40,6 @@ class TodoApp extends LitElement {
       this.todoList.splice(index, 1);
       this.todoList = _.clone(this.todoList);
       localStorage.setItem('todo-list', JSON.stringify(this.todoList));
-    });
-  }
-
-  handleAddItem() {
-    this.addEventListener('addItem', e => {
-      this.todoList = _.clone(this.todoList);
-      this.todoList = e.detail.todoList;
     });
   }
 
